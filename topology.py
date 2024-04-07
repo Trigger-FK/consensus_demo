@@ -16,6 +16,7 @@ def draw_network():
 
     plt.title("Network Topology")
     plt.savefig("Topology.png")
+    plt.show()
 
 
 draw_network()

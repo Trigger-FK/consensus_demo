@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-np.random.seed(1)
+np.random.seed(1) # Set random seed
 
 
 class network():
@@ -11,6 +11,7 @@ class network():
 
     def Laplacian(self) -> np.ndarray:
         # Set graph Laplacian matrix
+        # If you want to change network, please edit the below matrix 'a'
         a = np.array([
             [0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
             [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
@@ -33,11 +34,11 @@ class network():
 def Consensus(dimention: int, step: int) -> np.ndarray:
     G = network()
     L = G.Laplacian()
-    n = L.shape[0]
-    x = np.zeros((n, dimention, step))  # xの形状を修正
-    x[:, :, 0] = np.random.uniform(size=(n, dimention))
+    n = L.shape[0] # Get the number of nodes from matrix shape
+    x = np.zeros((n, dimention, step))
+    x[:, :, 0] = np.random.uniform(size=(n, dimention)) # Generate the state vector with random function
     for k in range(1, step):
-        x[:, :, k] = x[:, :, k - 1] - 0.05 * L @ x[:, :, k - 1]
+        x[:, :, k] = x[:, :, k - 1] - 0.05 * L @ x[:, :, k - 1] # Calculate control input
     return x
 
 
@@ -55,6 +56,7 @@ def static_figure() -> None:
         ax2.plot(x[i, 1, :], marker='o', markersize=1, label='Agent {}'.format(i))
     ax2.set_title("Control Input for y-axis")
     fig1.savefig('Result.png')
+    plt.show()
 
 
 def RenderGIF() -> None:
@@ -74,6 +76,7 @@ def RenderGIF() -> None:
 
     anim = animation.FuncAnimation(fig2, update, frames=x.shape[2], blit=True)
     anim.save('Result.gif', writer='pillow', fps=40)
+    plt.show()
 
 
 if __name__ == '__main__':
