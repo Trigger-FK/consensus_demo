@@ -43,7 +43,7 @@ class network():
 ここでは離散時間系での合意アルゴリズムを記述しています．
 
 ```math
-x[k+1] = x[k] - \epsilon \sum_{j \in \mathcal{N}_i} (x_i(t) - x_j(t))
+x[k+1] = x[k] - \epsilon \sum_{j \in \mathcal{N}_i} (x_i[k] - x_j[k])
 ```
 
 
