@@ -2,7 +2,7 @@ import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
 
-from Consensus_base.demo_consensus import network
+from demo_consensus import network
 
 
 def draw_network():
